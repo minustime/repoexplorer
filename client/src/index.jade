@@ -1,0 +1,25 @@
+doctype html5
+html(ng-app="app")
+	head
+		meta(charset="utf-8")
+		meta(http-equiv="X-UA-Compatible", content="IE=edge, chrome=1")
+		meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no")
+
+		title Repo Peep
+
+		link(rel="stylesheet", href="lib/bootstrap/dist/css/bootstrap.min.css")
+		link(rel="stylesheet", href="app.css")
+
+	body
+		header
+			| This is the header
+
+		main#container
+			div(ng-view="")
+
+		footer
+			| This is the footer
+
+		script(src="lib/angular/angular.min.js")
+		script(src="lib/angular-route/angular-route.min.js")
+		script(src="app.js")

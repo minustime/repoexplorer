@@ -4,17 +4,17 @@ This app allows you to browse organization's Github projects and view the latest
 
 Demo: _link to app running in Heroku_
 
-# Installation
+## Installation
 
 There are a couple of easy ways to run the application: locally via Docker or hosted remotely on Heroku.
 
-## Via Docker
+### Via Docker
 
-### Requirements 
+#### Requirements 
 
 * Docker 1.8
 
-### Installation steps
+#### Installation steps
 
 1. Pull the project from Docker Hub and run it
 
@@ -24,18 +24,39 @@ There are a couple of easy ways to run the application: locally via Docker or ho
 
 `<vm host ip>:8000`
 
-## Via Heroku
+### Via Heroku
 
-### Requirements 
+#### Requirements 
 
 * A free Heroku account
 
-### Installation steps
+#### Installation steps
 
 1. _insert heroku deploy button here_
 
-# Development
+## Development setup
 
-## Requirements
+### Requirements
 
-## Flow
+* Node 0.10.x
+* npm 1.4.x
+
+### Installation steps
+
+1. Get the code
+
+`$ git clone git@github.com:minustime/repopeep.git`
+`$ cd repopeep/client`
+
+2. Install build tools
+
+`$ npm install -g gulp`
+
+3. Install libraries required by application
+
+`$ npm install`
+`$ bower install`
+
+4. Build application
+
+`$ gulp build`
