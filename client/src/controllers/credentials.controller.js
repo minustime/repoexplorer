@@ -8,7 +8,7 @@
     Credentials.$inject = ['$window'];
 
     /**
-     * Saves Github app's credentials in local storage in order to test the app
+     * Saves Github app credentials in local storage, increases API rate limits
      */
     function Credentials($window) {
 
@@ -25,7 +25,7 @@
             vm.isOpen = !vm.isOpen;
         };
 
-        function addCredentials() {
+        function saveCredentials() {
 
             $window.localStorage[credentialsKey] = JSON.stringify({
                 clientId:  vm.clientId,

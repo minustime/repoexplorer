@@ -14,9 +14,9 @@
                 p
                     a(href="https://github.com/settings/developers", target="_blank") Enter your GitHub app credentials.
 
-                form(ng-submit="vm.addCredentials()")
+                form(ng-submit="vm.saveCredentials()")
                     .form-group
-                        input.form-control(type="text", required ng-model="vm.clientId", placeholder="Github Client Id")
+                        input.form-control(type="text", required ng-model="vm.clientId", placeholder="Github Client ID")
                     .form-group
                         input.form-control(type="text", required ng-model="vm.clientSecret", placeholder="Github Client Secret")
                     .form-group
