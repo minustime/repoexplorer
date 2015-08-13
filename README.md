@@ -1,4 +1,4 @@
-# Repo ◕ ◡ ◕ Peep 
+# Repo ◉ Explorer
 
 This app allows you to browse organization's Github projects and view the latest commits. The application consists of a client side app written in Angular 1.x and a server side companion written in Node. It can easily be run via Docker or on Heroku.
 

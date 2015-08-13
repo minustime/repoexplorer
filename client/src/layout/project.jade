@@ -1,0 +1,45 @@
+main
+    .container-fluid
+        .row.breadcrumb-container
+            .col-xs-2
+            .col-xs-8
+                ol.breadcrumb
+                    li
+                        a(href="#/organizations/{{ vm.org.login }}/projects") {{ vm.org.name }}
+                    li {{ vm.project.name }}
+        .row
+            .col-xs-2
+                aside
+
+                    h3 {{ vm.org.name }}
+                    img.logo-org(src="{{vm.org.avatar_url}}")
+
+                    hr
+                    p   {{ vm.org.description }}
+
+                    dl
+                        dt Public repos:
+                        dd {{ vm.org.public_repos }}
+            .col-xs-8
+                article
+
+                    h1 {{ vm.project.name }}
+                    p {{ vm.project.description }}
+
+                    h2 Latest Commits
+                    section
+                        table.table
+                            thead
+                                tr
+                                    th &nbsp;
+                                    th Author
+                                    th Date
+                                    th Message
+                            tbody
+                                tr(ng-repeat="commit in vm.commits")
+                                    td
+                                        img.author-avatar(src="{{ commit.author.avatar_url }}")
+                                    td.nowrap {{ commit.commit.committer.name }}
+                                    td.nowrap {{ commit.commit.committer.date | date:'MM/dd/yyyy h:mma' }}
+                                    td {{ commit.commit.message }}
+

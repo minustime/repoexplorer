@@ -1,0 +1,49 @@
+main
+    .container-fluid
+        .row.breadcrumb-container
+            .col-xs-2
+            .col-xs-8
+                ol.breadcrumb
+                    li {{ vm.org.name }}
+        .row
+            .col-xs-2
+                aside
+
+                    h3 {{ vm.org.name }}
+                    img.logo-org(src="{{vm.org.avatar_url}}")
+
+                    hr
+                    p   {{ vm.org.description }}
+
+                    dl
+                        dt Public repos:
+                        dd {{ vm.org.public_repos }}
+            .col-xs-8
+                article
+                    section
+                        table.table.table-striped.table-hover
+                            thead
+                                tr
+                                    th
+                                        span.sortable(ng-click="reverse = !reverse; vm.order('name', reverse)") Name
+                                    th
+                                        span.sortable(ng-click="reverse = !reverse; vm.order('language', reverse)") Language
+                                    //th
+                                        span.octicon.octicon-eye
+                                        | Watchers
+                                    th
+                                        span.octicon.octicon-star
+                                        span.sortable(ng-click="reverse = !reverse; vm.order('stargazers_count', reverse)") Stargazers
+                                    th
+                                        span.octicon.octicon-repo-forked
+                                        span.sortable(ng-click="reverse=!reverse; vm.order('forks', reverse)") Forks
+                            tbody
+                                tr(ng-repeat="project in vm.projects", ng-click="vm.viewRepo(project)")
+                                    td
+                                        span.octicon.octicon-repo
+                                        | {{ project.name }}
+                                    td {{ project.language }}
+                                    //td {{ project.watchers_count }}
+                                    td {{ project.stargazers_count }}
+                                    td {{ project.forks }}
+

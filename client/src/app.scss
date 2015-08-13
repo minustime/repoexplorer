@@ -1,3 +1,96 @@
-body {
-	color: 'red';
+/* Tags */
+
+article {
+  margin: 20px 0px;
 }
+
+main {
+  padding-bottom: 100px;
+}
+
+header {
+  background: #e50914;
+}
+
+
+dt {
+  display: inline;
+}
+
+dd {
+  display: inline;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+}
+
+tbody tr {
+  cursor: pointer;
+}
+
+/* IDs */
+
+
+/* Classes */
+
+.author-avatar {
+  width: 32px;
+}
+
+.breadcrumb-container {
+  background: #e0e0e0
+}
+
+.breadcrumb {
+  margin-bottom: 0;
+  padding: 8px;
+  background: #e0e0e0;
+}
+
+.filters {
+  background: #868686;
+}
+
+a.logo-app {
+	color: #fff;
+	font-size: 22px;
+	padding: 10px;
+  	text-decoration: none;
+    display: inline-block;
+    .octicon {
+      font-size: 20px;
+      &:before {
+        margin-right: 5px;
+      }
+    }
+}
+
+.logo-org {
+  width: 100%;
+}
+
+.search {
+  &.secondary {
+	input {
+	  margin: 5px;
+	}
+  }
+  &.main {
+	margin-top: 100px;
+  }
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.sortable {
+  cursor: pointer;
+}
+
+.octicon {
+  margin-right: 5px;
+}
+

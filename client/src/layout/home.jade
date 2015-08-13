@@ -1,0 +1,13 @@
+.container-fluid
+    .row
+        .col-sm-4
+        .col-sm-4
+            section
+                .search.main
+                    form(ng-submit="vm.getProfile()")
+                        .form-group
+                            label Enter a Github organization
+                            input.form-control(type="text", name="org-search", placeholder="Organization name", required ng-model="vm.orgLogin")
+                        .form-group
+                            button.btn.btn-default.btn-lg.btn-block(type="submit") Explore!
+        .col-sm-4
