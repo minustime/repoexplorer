@@ -1,6 +1,6 @@
 # Repo ◉ Explorer
 
-This app allows one to browse an organization's public Github projects and view their latest commits.
+This sample app allows one to browse an organization's public Github projects and view their latest commits.
 
 The application consists of a client side app written in [AngularJS 1.4.3](https://angularjs.org/), the UI look and feel is provided by
 [Bootstrap](http://getbootstrap.com/css).
@@ -26,8 +26,8 @@ By default the app will display projects sorted by "Stargazers" in descending or
 Projects can be sorted by "Name", "Language", "Stargazers" or "Forks".
 Click on the headings to sort by either one of those parameters
 
-To view the latest commits, click on any of the projects in the organization's project page.
-Commits are shown for the projects's default branch, typically `master`.
+To view the latest commits, click on any of the projects in the organization's repos page.
+Commits are shown for the project's default branch, typically `master`.
 
 **Bypassing Github API rate limits**
 
@@ -41,8 +41,8 @@ Please follow the steps below to install the application locally.
 
 ### Requirements
 
-* Node 0.10.x
-* npm 1.4.x
+* [Node.js 0.10.x](https://nodejs.org)
+* [npm 1.4.x](https://www.npmjs.com)
 
 ### Installation steps
 
@@ -52,11 +52,11 @@ Please follow the steps below to install the application locally.
 
     `$ cd repoexplorer/client`
 
-2. Install build tools
+2. Install the build tools
 
     `$ npm install -g gulp`
 
-3. Install libraries application depends on
+3. Install libraries the application depends on
 
     `$ npm install`
 
@@ -68,7 +68,7 @@ Please follow the steps below to install the application locally.
 
 5. Enjoy!
 
-    The compiled files are located in a `client/dist` folder. View them via a web server. For example using python:
+    The compiled app is located in the `client/dist` folder, please run it on a web server. For example using python:
 
     `$ cd client/dist`
 
