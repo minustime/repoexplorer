@@ -17,9 +17,6 @@
 		vm.org = {};
 		vm.repo = [];
 		vm.commits = [];
-		vm.viewRepo = function(repo) {
-			$window.location.href = '#/organizations/' + vm.org.login + '/repos/' + repo.name;
-		};
 
 		/**
 		 * Grabs initial data for the view

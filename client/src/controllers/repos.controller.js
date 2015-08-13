@@ -17,12 +17,16 @@
 
 		vm.org = {};
 		vm.repos = [];
-		vm.order = function(predicate, reverse) {
+		vm.order = order;
+		vm.viewRepo = viewRepo;
+
+		function order(predicate, reverse) {
 			vm.repos = orderBy(vm.repos, predicate, reverse);
-		};
-		vm.viewRepo = function(repo) {
+		}
+
+		function viewRepo(repo) {
 			$window.location.href = '#/organizations/' + vm.org.login + '/repos/' + repo.name;
-		};
+		}
 
 		/**
 		 * Grabs the initial data for the view

@@ -19,11 +19,11 @@
         vm.clientSecret = '';
         vm.isOpen = false;
         vm.toggleDisplay = toggleDisplay;
-        vm.addCredentials = addCredentials;
+        vm.saveCredentials = saveCredentials;
 
         function toggleDisplay() {
             vm.isOpen = !vm.isOpen;
-        };
+        }
 
         function saveCredentials() {
 
