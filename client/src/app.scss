@@ -21,10 +21,6 @@ dd {
   display: inline;
 }
 
-footer {
-  position: absolute;
-  bottom: 0;
-}
 
 tbody tr {
   cursor: pointer;
@@ -35,7 +31,7 @@ tbody tr {
 
 /* Classes */
 
-.author-avatar {
+.avatar-author {
   width: 32px;
 }
 
@@ -47,6 +43,22 @@ tbody tr {
   margin-bottom: 0;
   padding: 8px;
   background: #e0e0e0;
+}
+
+.credentials {
+  color: #fff;
+  a {
+    color: #fff;
+    text-decoration: underline;
+  }
+}
+
+.credentials-toggle {
+  color: #fff;
+  float: right;
+  margin: 10px;
+  padding: 0;
+  cursor: pointer;
 }
 
 .filters {

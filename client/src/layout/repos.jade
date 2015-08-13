@@ -7,17 +7,8 @@ main
                     li {{ vm.org.name }}
         .row
             .col-xs-2
-                aside
+                aside(ng-include="'layout/org-profile.html'")
 
-                    h3 {{ vm.org.name }}
-                    img.logo-org(src="{{vm.org.avatar_url}}")
-
-                    hr
-                    p   {{ vm.org.description }}
-
-                    dl
-                        dt Public repos:
-                        dd {{ vm.org.public_repos }}
             .col-xs-8
                 article
                     section
@@ -46,4 +37,3 @@ main
                                     //td {{ repo.watchers_count }}
                                     td {{ repo.stargazers_count }}
                                     td {{ repo.forks }}
-

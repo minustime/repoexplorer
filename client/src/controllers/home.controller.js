@@ -7,7 +7,9 @@
 
 	Home.$inject = ['$window', 'Org'];
 
-	// Define controller
+	/**
+	 * Home controller,  handles initial organization lookup
+	 */
 	function Home($window, Org) {
 
 		var vm = this;
@@ -15,9 +17,12 @@
 		vm.orgLogin = '';
 		vm.getProfile = getProfile;
 
+		/**
+		 * Returns the organization's profile
+		 */
 		function getProfile() {
 
-			// TODO: add spinner..
+			// TODO: show loading spinner
 
 			return Org.getProfile(vm.orgLogin.toLowerCase())
 				.then(function(profile) {
@@ -26,7 +31,7 @@
 					}
 					else {
 						// TODO: add friendly error message
-						alert('Organization not found');
+						alert('Sorry, the organization you entered could not be retrieved.');
 					}
 				});
 		}

@@ -7,7 +7,9 @@
 
 	Repos.$inject = ['$window', '$routeParams', '$filter', 'Org'];
 
-	// Define controller
+	/**
+	 * Repos controller, brokers organization repos data
+	 */
 	function Repos($window, $routeParams, $filter, Org) {
 
 		var vm = this;
@@ -22,9 +24,12 @@
 			$window.location.href = '#/organizations/' + vm.org.login + '/repos/' + repo.name;
 		};
 
+		/**
+		 * Grabs the initial data for the view
+		 */
 		function init() {
 
-			// TODO: show spinner
+			// TODO: show loading spinner
 
 			var orgLogin = $routeParams.orgLogin.toLowerCase();
 
@@ -41,7 +46,8 @@
 							});
 					}
 					else {
-						// TODO: show error message, organization does not exist..
+						// TODO: show friendly error message
+						alert('Sorry, the organization you entered could not be retrieved.');
 					}
 				});
 		}

@@ -1,9 +1,23 @@
 .container-fluid
     .row
-        .col-lg-2
+        .col-xs-2
             a.logo-app(href="#/")
                 em
                     span.octicon.octicon-eye Repo Explorer
-        //.col-xs-4
-            .search.secondary
-                input.form-control(type="text", name="org-search")
+        .col-xs-3.col-xs-offset-7(ng-controller='Credentials as vm')
+
+            div.clearfix
+                span.credentials-toggle.octicon.octicon-key(ng-click="vm.toggleDisplay()", ng-show="!vm.isOpen")
+                span.credentials-toggle.octicon.octicon-remove-close(ng-click="vm.toggleDisplay()", ng-show="vm.isOpen")
+
+            .credentials(ng-show="vm.isOpen")
+                p
+                    a(href="https://github.com/settings/developers", target="_blank") Enter your GitHub app credentials.
+
+                form(ng-submit="vm.addCredentials()")
+                    .form-group
+                        input.form-control(type="text", required ng-model="vm.clientId", placeholder="Github Client Id")
+                    .form-group
+                        input.form-control(type="text", required ng-model="vm.clientSecret", placeholder="Github Client Secret")
+                    .form-group
+                        button.btn.btn-default.btn-sm.btn-block(type="submit") Save

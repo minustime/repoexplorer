@@ -7,7 +7,9 @@
 
 	Repo.$inject = ['$window', '$routeParams', '$filter', 'Org'];
 
-	// Define controller
+	/**
+	 * Repo controller, brokers repo specific data
+	 */
 	function Repo($window, $routeParams, $filter, Org) {
 
 		var vm = this;
@@ -19,9 +21,12 @@
 			$window.location.href = '#/organizations/' + vm.org.login + '/repos/' + repo.name;
 		};
 
+		/**
+		 * Grabs initial data for the view
+		 */
 		function init() {
 
-			// TODO: show spinner
+			// TODO: show loading spinner
 
 			var orgLogin  = $routeParams.orgLogin.toLowerCase();
 			var repoName = $routeParams.repoName.toLowerCase();
@@ -39,13 +44,12 @@
 
 						Org.getCommits(orgLogin, repoName, 'master')
 							.then(function(commits) {
-								console.log('xxx')
-								console.log(commits.length)
 								vm.commits = commits;
 							});
 					}
 					else {
-						// TODO: show error message, organization does not exist.. redirect to org root
+						// TODO: add friendly error message
+						alert('Sorry, the organization you entered could not be retrieved.');
 					}
 				});
 		}
