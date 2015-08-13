@@ -8,7 +8,7 @@
 	Org.$inject = ['$q', '$http'];
 
 	/**
-	 * Handles organization profile and projects
+	 * Handles organization profile and repos
 	 * @param $q
 	 * @param $http
 	 * @returns {{getProfile: getProfile, getRepos: getRepos}}
@@ -52,7 +52,7 @@
 
 			//if(isRepoCached) {
 			if(1 === -1){
-				deferred.resolve(org.project);
+				deferred.resolve(org.repo);
 				return deferred.promise;
 			}
 			else {
@@ -68,7 +68,7 @@
 				.then(function(response) {
 
 					if(response.data.id) {
-						//org.project = response.data;
+						//org.repo = response.data;
 					}
 
 					return response.data;
@@ -82,13 +82,13 @@
 
 			var deferred = $q.defer();
 			var org = orgs[orgLogin];
-			var totalProjects = org.projects.length;
+			var totalRepos = org.repos.length;
 			var repo = {};
 
 			// does repo exist..
-			while(totalProjects--) {
-				if(org.projects[totalProjects].name.toLowerCase() === repoName) {
-					repo = org.projects[totalProjects];
+			while(totalRepos--) {
+				if(org.repos[totalRepos].name.toLowerCase() === repoName) {
+					repo = org.repos[totalRepos];
 					break;
 				}
 			}
@@ -110,7 +110,7 @@
 				.then(function(response) {
 
 					if(response.data.id) {
-						//org.projects.push(response.data);
+						//org.repos.push(response.data);
 					}
 
 					return response.data;
@@ -121,7 +121,7 @@
 		}
 
 		/**
-		 * Returns the organization's projects
+		 * Returns the organization's repos
 		 * @returns {org.profile|{}}
 		 */
 		function getRepos(orgLogin) {
@@ -129,8 +129,8 @@
 			var deferred = $q.defer();
 			var org = orgs[orgLogin];
 
-			if(org.projects.length > 0) {
-				deferred.resolve(org.projects);
+			if(org.repos.length > 0) {
+				deferred.resolve(org.repos);
 				return deferred.promise;
 			}
 			else {
@@ -169,21 +169,21 @@
 				.then(function(results) {
 
 					var org = orgs[orgLogin];
-					org.projects = [];
+					org.repos = [];
 
 					// Get all the repos..
 					var reposIndex = results.length;
 					while(reposIndex--) {
 						var repoIndex = results[reposIndex].data.length;
 						while(repoIndex--) {
-							org.projects.push(results[reposIndex].data[repoIndex]);
+							org.repos.push(results[reposIndex].data[repoIndex]);
 						}
 					}
 
-					return org.projects;
+					return org.repos;
 				})
 				.catch(function() {
-					return org.projects;
+					return org.repos;
 				});
 		}
 
@@ -222,7 +222,7 @@
 					if(response.data.id) {
 						orgs[orgLogin] = {
 							profile: response.data,
-							projects: []
+							repos: []
 						};
 
 						return orgs[orgLogin].profile;

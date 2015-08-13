@@ -16,14 +16,14 @@
 				controller: 'Home',
 				controllerAs: 'vm'
 			})
-			.when('/organizations/:orgLogin', {
-				templateUrl: 'layout/projects.html',
-				controller: 'Projects',
+			.when('/organizations/:orgLogin/repos', {
+				templateUrl: 'layout/repos.html',
+				controller: 'Repos',
 				controllerAs: 'vm'
 			})
-			.when('/organizations/:orgLogin/projects/:repoName', {
-				templateUrl: 'layout/project.html',
-				controller: 'Project',
+			.when('/organizations/:orgLogin/repos/:repoName', {
+				templateUrl: 'layout/repo.html',
+				controller: 'Repo',
 				controllerAs: 'vm'
 			})
 			.otherwise({

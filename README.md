@@ -18,7 +18,7 @@ There are a couple of easy ways to run the application: locally via Docker or ho
 
 1. Pull the project from Docker Hub and run it
 
-`$ docker run minustime/repopeep`
+`$ docker run minustime/repoexplorer`
 
 2. Navigate to 
 
@@ -45,8 +45,8 @@ There are a couple of easy ways to run the application: locally via Docker or ho
 
 1. Get the code
 
-`$ git clone git@github.com:minustime/repopeep.git`
-`$ cd repopeep/client`
+`$ git clone git@github.com:minustime/repoexplorer.git`
+`$ cd repoexplorer/client`
 
 2. Install build tools
 

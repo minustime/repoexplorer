@@ -22,7 +22,7 @@
 			return Org.getProfile(vm.orgLogin.toLowerCase())
 				.then(function(profile) {
 					if(profile.id) {
-						$window.location.href = '#/organizations/' + profile.login;
+						$window.location.href = '#/organizations/' + profile.login + '/repos';
 					}
 					else {
 						// TODO: add friendly error message

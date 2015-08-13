@@ -5,8 +5,8 @@ main
             .col-xs-8
                 ol.breadcrumb
                     li
-                        a(href="#/organizations/{{ vm.org.login }}/projects") {{ vm.org.name }}
-                    li {{ vm.project.name }}
+                        a(href="#/organizations/{{ vm.org.login }}/repos") {{ vm.org.name }}
+                    li {{ vm.repo.name }}
         .row
             .col-xs-2
                 aside
@@ -23,8 +23,8 @@ main
             .col-xs-8
                 article
 
-                    h1 {{ vm.project.name }}
-                    p {{ vm.project.description }}
+                    h1 {{ vm.repo.name }}
+                    p {{ vm.repo.description }}
 
                     h2 Latest Commits
                     section

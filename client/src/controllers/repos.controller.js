@@ -3,23 +3,23 @@
 
 	angular
 		.module('app')
-		.controller('Projects', Projects);
+		.controller('Repos', Repos);
 
-	Projects.$inject = ['$window', '$routeParams', '$filter', 'Org'];
+	Repos.$inject = ['$window', '$routeParams', '$filter', 'Org'];
 
 	// Define controller
-	function Projects($window, $routeParams, $filter, Org) {
+	function Repos($window, $routeParams, $filter, Org) {
 
 		var vm = this;
 		var orderBy = $filter('orderBy');
 
 		vm.org = {};
-		vm.projects = [];
+		vm.repos = [];
 		vm.order = function(predicate, reverse) {
-			vm.projects = orderBy(vm.projects, predicate, reverse);
+			vm.repos = orderBy(vm.repos, predicate, reverse);
 		};
 		vm.viewRepo = function(repo) {
-			$window.location.href = '#/organizations/' + vm.org.login + '/projects/' + repo.name;
+			$window.location.href = '#/organizations/' + vm.org.login + '/repos/' + repo.name;
 		};
 
 		function init() {
@@ -35,8 +35,8 @@
 						vm.org = profile;
 
 						Org.getRepos(orgLogin)
-							.then(function(projects) {
-								vm.projects = projects;
+							.then(function(repos) {
+								vm.repos = repos;
 								vm.order('stargazers_count', true);
 							});
 					}

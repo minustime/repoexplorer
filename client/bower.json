@@ -1,10 +1,10 @@
 {
-  "name": "repopeep-client",
+  "name": "repoexplorer-client",
   "version": "0.0.0",
   "authors": [
     "Vic <vic@minustime.com>"
   ],
-  "description": "Client app for the Repo Peep project",
+  "description": "Client app for the Repo Explorer project",
   "license": "MIT",
   "private": true,
   "ignore": [

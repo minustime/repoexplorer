@@ -3,20 +3,20 @@
 
 	angular
 		.module('app')
-		.controller('Project', Project);
+		.controller('Repo', Repo);
 
-	Project.$inject = ['$window', '$routeParams', '$filter', 'Org'];
+	Repo.$inject = ['$window', '$routeParams', '$filter', 'Org'];
 
 	// Define controller
-	function Project($window, $routeParams, $filter, Org) {
+	function Repo($window, $routeParams, $filter, Org) {
 
 		var vm = this;
 
 		vm.org = {};
-		vm.project = [];
+		vm.repo = [];
 		vm.commits = [];
 		vm.viewRepo = function(repo) {
-			$window.location.href = '#/organizations/' + vm.org.login + '/projects/' + repo.name;
+			$window.location.href = '#/organizations/' + vm.org.login + '/repos/' + repo.name;
 		};
 
 		function init() {
@@ -33,8 +33,8 @@
 						vm.org = profile;
 
 						Org.getRepo(orgLogin, repoName)
-							.then(function(project) {
-								vm.project = project;
+							.then(function(repo) {
+								vm.repo = repo;
 							});
 
 						Org.getCommits(orgLogin, repoName, 'master')

@@ -38,12 +38,12 @@ main
                                         span.octicon.octicon-repo-forked
                                         span.sortable(ng-click="reverse=!reverse; vm.order('forks', reverse)") Forks
                             tbody
-                                tr(ng-repeat="project in vm.projects", ng-click="vm.viewRepo(project)")
+                                tr(ng-repeat="repo in vm.repos", ng-click="vm.viewRepo(repo)")
                                     td
                                         span.octicon.octicon-repo
-                                        | {{ project.name }}
-                                    td {{ project.language }}
-                                    //td {{ project.watchers_count }}
-                                    td {{ project.stargazers_count }}
-                                    td {{ project.forks }}
+                                        | {{ repo.name }}
+                                    td {{ repo.language }}
+                                    //td {{ repo.watchers_count }}
+                                    td {{ repo.stargazers_count }}
+                                    td {{ repo.forks }}
 

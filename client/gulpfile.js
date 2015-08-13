@@ -37,8 +37,8 @@ gulp.task('process-sass', function() {
 // Build tasks
 //-------------
 
+gulp.task('default', ['build']);
 gulp.task('build', ['process-js', 'process-jade', 'process-sass']);
-
 gulp.task('watch', function() {
 	gulp.watch('src/**', ['build']);
 });

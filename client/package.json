@@ -1,14 +1,14 @@
 {
-  "name": "repopeep-client",
+  "name": "repoexplorer-client",
   "version": "1.0.0",
-  "description": "Client app for the Repo Peep project",
+  "description": "Client app for the Repo Explorer project",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "github.com/minustime/repopeep"
+    "url": "github.com/minustime/repoexplorer"
   },
   "keywords": [
     "Github",
@@ -19,9 +19,9 @@
   "author": "Vic",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/minustime/repopeep/issues"
+    "url": "https://github.com/minustime/repoexplorer/issues"
   },
-  "homepage": "https://github.com/minustime/repopeep",
+  "homepage": "https://github.com/minustime/repoexplorer",
   "devDependencies": {
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.0",
