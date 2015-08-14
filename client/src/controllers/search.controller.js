@@ -14,30 +14,12 @@
 
 		var vm = this;
 
-		vm.orgLogin = '';
+		vm.search = Org.search
 		vm.getProfile = getProfile;
 		vm.isHome = true;
 
-		// Watch service
-		$scope.$watch(
-			function() {
-				return Org.searchTerm;
-			},
-			function(newish, oldish) {
-				vm.orgLogin = newish;
-			}
-		);
-
-		// Watch input
-		$scope.$watch('vm.orgLogin',
-			function(newish, oldish) {
-				Org.searchTerm = newish;
-			}
-		);
-
 		// Signal when we're on the home page
 		$scope.$on('$locationChangeSuccess', locationCheck);
-
 
 		function locationCheck() {
 			vm.isHome = $location.path() === '/';
@@ -49,7 +31,7 @@
 		function getProfile() {
 
 			// TODO: show loading spinner
-			Org.getProfile(vm.orgLogin.toLowerCase())
+			Org.getProfile(vm.search.term.toLowerCase())
 				.then(function(profile) {
 					if(profile.id) {
 						$window.location.href = '#/organizations/' + profile.login + '/repos';

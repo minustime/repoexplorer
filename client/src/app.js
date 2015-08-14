@@ -12,9 +12,7 @@
 	function config($routeProvider) {
 		$routeProvider
 			.when('/', {
-				templateUrl: 'layout/home.html',
-				controller: 'Search',
-				controllerAs: 'vm'
+				templateUrl: 'layout/home.html'
 			})
 			.when('/organizations/:orgLogin/repos', {
 				templateUrl: 'layout/repos.html',

@@ -41,12 +41,15 @@ gulp.task('process-sass', function() {
 		.pipe(gulp.dest('dist'));
 });
 
+// Watch for changes to the source files
+gulp.task('watch-all', function() {
+	gulp.watch('src/**', ['build']);
+});
+
 //-------------
 // Build tasks
 //-------------
 
 gulp.task('default', ['build']);
 gulp.task('build', ['lint-js', 'process-js', 'process-jade', 'process-sass']);
-gulp.task('watch', function() {
-	gulp.watch('src/**', ['build']);
-});
+gulp.task('watch', ['build', 'watch-all']);

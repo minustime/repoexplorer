@@ -9,6 +9,6 @@
             .search.inline.pull-right(ng-controller='Search as vm')
                 form.form-inline(ng-submit="vm.getProfile()", ng-hide="vm.isHome")
                     .form-group
-                        input.form-control(type="text", name="org-search", placeholder="Organization name", required ng-model="vm.orgLogin")
+                        input.form-control(type="text", name="org-search", placeholder="Organization name", required ng-model="vm.search.term")
                     .form-group
                         button.btn.btn-default(type="submit") Explore!

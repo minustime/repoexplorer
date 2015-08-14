@@ -16,18 +16,18 @@ main
                             thead
                                 tr
                                     th
-                                        span.sortable(ng-click="reverse = !reverse; vm.order('name', reverse)") Name
+                                        span.sortable(ng-click="reverse = !reverse; vm.order('-name', reverse)") Name
                                     th
-                                        span.sortable(ng-click="reverse = !reverse; vm.order('language', reverse)") Language
+                                        span.sortable(ng-click="reverse = !reverse; vm.order('-language', reverse)") Language
                                     //th
                                         span.octicon.octicon-eye
                                         | Watchers
                                     th
                                         span.octicon.octicon-star
-                                        span.sortable(ng-click="reverse = !reverse; vm.order('stargazers_count', reverse)") Stargazers
+                                        span.sortable(ng-click="reverse = !reverse; vm.order('-stargazers_count', reverse)") Stargazers
                                     th
                                         span.octicon.octicon-repo-forked
-                                        span.sortable(ng-click="reverse=!reverse; vm.order('forks', reverse)") Forks
+                                        span.sortable(ng-click="reverse=!reverse; vm.order('-forks', reverse)") Forks
                             tbody
                                 tr(ng-repeat="repo in vm.repos", ng-click="vm.viewRepo(repo)")
                                     td
