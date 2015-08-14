@@ -13,7 +13,7 @@
 		$routeProvider
 			.when('/', {
 				templateUrl: 'layout/home.html',
-				controller: 'Home',
+				controller: 'Search',
 				controllerAs: 'vm'
 			})
 			.when('/organizations/:orgLogin/repos', {

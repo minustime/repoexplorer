@@ -16,6 +16,7 @@
 		var reposEndpoint = 'https://api.github.com/orgs/{orgLogin}/repos?page={pageNumber}';
 		var repoEndpoint = 'https://api.github.com/repos/{orgLogin}/{repoName}';
 		var commitsEndpoint = 'https://api.github.com/repos/{orgLogin}/{repoName}/commits';
+		var searchTerm = '';
 		var orgs = {};
 
 		/*
@@ -33,7 +34,8 @@
 			getProfile: getProfile,
 			getRepos: getRepos,
 			getRepo: getRepo,
-			getCommits: getCommits
+			getCommits: getCommits,
+			searchTerm: searchTerm
 		};
 
 		/**

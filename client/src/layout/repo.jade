@@ -15,7 +15,7 @@ main
                 article
 
                     h1 {{ vm.repo.name }}
-                    p {{ vm.repo.description }}
+                    p.lead {{ vm.repo.description }}
 
                     h2 Latest Commits
                     section
@@ -30,7 +30,7 @@ main
                                 tr(ng-repeat="commit in vm.commits")
                                     td
                                         img.avatar-author(ng-src="{{ commit.author.avatar_url }}")
-                                    td.nowrap {{ commit.commit.committer.name }}
-                                    td.nowrap {{ commit.commit.committer.date | date:'MM/dd/yyyy h:mma' }}
+                                    td.text-nowrap {{ commit.commit.committer.name }}
+                                    td.text-nowrap {{ commit.commit.committer.date | date:'MM/dd/yyyy h:mma' }}
                                     td {{ commit.commit.message }}
 

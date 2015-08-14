@@ -1,17 +1,17 @@
-describe('Home Controller', function() {
+describe('Search Controller', function() {
 
-    var home;
+    var Search;
 
     beforeEach(module('app'));
 
     beforeEach(inject(function($controller) {
-        home = $controller('Home');
+        Search = $controller('Search');
     }));
 
     describe('getProfile()', function() {
 
         it('should return and valid org profile', function() {
-            
+
         });
 
         it('should display an error message when an API rate limit is encountered', function() {
