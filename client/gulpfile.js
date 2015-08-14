@@ -4,7 +4,15 @@ var jade = require('gulp-jade');
 var uglify = require('gulp-uglify');
 var watch = require('gulp-watch');
 var sass = require('gulp-sass');
+var jshint = require('gulp-jshint');
 var ngAnnotate = require('gulp-ng-annotate');
+
+// Lint JavaScript
+gulp.task('lint-js', function() {
+	gulp.src(['src/**/app.js', 'src/**/*.js'])
+		.pipe(jshint('.jshintrc'))
+		.pipe(jshint.reporter('jshint-stylish'));
+});
 
 // Process JavaScript files
 gulp.task('process-js', function() {
@@ -38,7 +46,7 @@ gulp.task('process-sass', function() {
 //-------------
 
 gulp.task('default', ['build']);
-gulp.task('build', ['process-js', 'process-jade', 'process-sass']);
+gulp.task('build', ['lint-js', 'process-js', 'process-jade', 'process-sass']);
 gulp.task('watch', function() {
 	gulp.watch('src/**', ['build']);
 });

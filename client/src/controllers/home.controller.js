@@ -31,7 +31,7 @@
 					}
 					else {
 						// TODO: add friendly error message
-						alert('Sorry, the organization you entered could not be retrieved.');
+						$window.alert('Sorry, the organization you entered could not be retrieved.');
 					}
 				});
 		}

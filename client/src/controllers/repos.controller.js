@@ -20,10 +20,16 @@
 		vm.order = order;
 		vm.viewRepo = viewRepo;
 
+		/**
+		 * Sorts by specified property
+		 */
 		function order(predicate, reverse) {
 			vm.repos = orderBy(vm.repos, predicate, reverse);
 		}
 
+		/**
+		 * Navigates to the repo screen
+		 */
 		function viewRepo(repo) {
 			$window.location.href = '#/organizations/' + vm.org.login + '/repos/' + repo.name;
 		}
@@ -51,7 +57,7 @@
 					}
 					else {
 						// TODO: show friendly error message
-						alert('Sorry, the organization you entered could not be retrieved.');
+						$window.alert('Sorry, the organization you entered could not be retrieved.');
 					}
 				});
 		}

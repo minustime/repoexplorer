@@ -24,7 +24,7 @@
 		orgs[<orgLogin>] = {
 			profile: {},
 			repos: [{}],
-			recent_commits[<orgLogin/repoName/branch>]: []
+			recent_commits[<repoName/branch>]: []
 		}
 
 		*/

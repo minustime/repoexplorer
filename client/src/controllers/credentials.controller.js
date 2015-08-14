@@ -33,7 +33,7 @@
             });
 
             vm.isOpen = false;
-            alert('Got it!')
+            $window.alert('Got it!');
         }
 
         function init() {
