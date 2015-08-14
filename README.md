@@ -11,7 +11,7 @@ The markup is written in [Jade](http://jade-lang.com), which gets compiled into 
 [Bower](http://bower.io) is used to manage the app dependencies and [Gulp](http://gulpjs.com/) is used to compile the
 markup, CSS and concatenate the JavaScript files.
 
-Demo: [http://repoexplorer.staging.bz](http://repoexplorer.staging.bz)
+Demo: [http://repoexplorer-more.staging.bz](http://repoexplorer-more.staging.bz)
 
 
 ## Usage
