@@ -5,18 +5,22 @@
 		.module('app')
 		.controller('Repo', Repo);
 
-	Repo.$inject = ['$window', '$routeParams', '$filter', 'Org'];
+	Repo.$inject = ['$q', '$window', '$routeParams', '$filter', 'Org'];
 
 	/**
-	 * Repo controller, brokers repo specific data
+	 * Handles a specific repository page, displays latest commits
 	 */
-	function Repo($window, $routeParams, $filter, Org) {
+	function Repo($q, $window, $routeParams, $filter, Org) {
 
 		var vm = this;
+		var orgLogin;
+		var repoName;
 
 		vm.org = {};
 		vm.repo = [];
 		vm.commits = [];
+
+		init();
 
 		/**
 		 * Grabs initial data for the view
@@ -25,32 +29,43 @@
 
 			// TODO: show loading spinner
 
-			var orgLogin  = $routeParams.orgLogin.toLowerCase();
-			var repoName = $routeParams.repoName.toLowerCase();
+			orgLogin  = $routeParams.orgLogin.toLowerCase();
+			repoName = $routeParams.repoName.toLowerCase();
 
 			Org.getProfile(orgLogin)
-				.then(function(profile) {
-					if(profile.id) {
-
-						vm.org = profile;
-
-						Org.getRepo(orgLogin, repoName)
-							.then(function(repo) {
-								vm.repo = repo;
-							});
-
-						Org.getCommits(orgLogin, repoName, 'master')
-							.then(function(commits) {
-								vm.commits = commits;
-							});
-					}
-					else {
-						// TODO: add friendly error message
-						$window.alert('Sorry, the organization you entered could not be retrieved.');
-					}
-				});
+				.then(getRepoData)
+				.catch(showErrors);
 		}
 
-		init();
+		/**
+		 * Get repo meta, get commits
+		 */
+		function getRepoData(profile) {
+
+			// Save the organization's profile for the view
+			vm.org = profile;
+
+			$q.all([
+				Org.getRepo(orgLogin, repoName),
+				Org.getCommits(orgLogin, repoName, 'master')
+			])
+			.then(showRepoData)
+			.catch(showErrors);
+		}
+
+		/**
+		 * Make the repo meta and commits available to the view
+		 */
+		function showRepoData(results) {
+			vm.repo = results[0];
+			vm.commits = results[1];
+		}
+
+		/**
+		 * Display errors received from the service
+		 */
+		function showErrors (err) {
+			$window.alert(err.message);
+		}
 	}
 })();

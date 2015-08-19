@@ -34,13 +34,35 @@
 			getRepos: getRepos,
 			getRepo: getRepo,
 			getCommits: getCommits,
-			search: getSearchTerm()
+			getSearchTerm: getSearchTerm()
 		};
 
 		function getSearchTerm() {
 			return {
 				term: ''
+			};
+		}
+
+		/**
+		 * Return a user friendly error message, based on the status we get from Github's API
+		 */
+		function getFriendlyError(status) {
+
+			var err = {
+				message: 'Sorry, something wen\'t wrong, please try again.',
+				status: status
+			};
+
+			switch(status) {
+				case 404:
+					err.message = 'Sorry, the organization you entered could not be found.';
+					break;
+				case 403:
+					err.message = 'Sorry, you have reached Github\'s API rate limit.';
+					break;
 			}
+
+			return err;
 		}
 
 		/**
@@ -95,8 +117,8 @@
 
 					return response.data;
 				})
-				.catch(function() {
-					return [];
+				.catch(function(err) {
+					return $q.reject(getFriendlyError(err.status));
 				});
 		}
 
@@ -110,7 +132,7 @@
 			var totalRepos = org.repos.length;
 			var repo = {};
 
-			// does repo exist..
+			// Return the repo from cache
 			while(totalRepos--) {
 				if(org.repos[totalRepos].name.toLowerCase() === repoName) {
 					repo = org.repos[totalRepos];
@@ -144,13 +166,13 @@
 
 					return response.data;
 				})
-				.catch(function() {
-					return {};
+				.catch(function(err) {
+					return $q.reject(getFriendlyError(err.status));
 				});
 		}
 
 		/**
-		 * Returns the organization repos
+		 * Returns the organization repositories
 		 */
 		function getRepos(orgLogin) {
 
@@ -167,27 +189,7 @@
 		}
 
 		/**
-		 * Fetches the organization repos from Github, page by page
-		 */
-		function fetchReposPaginated(orgLogin) {
-
-			var pages = [];
-			var org = orgs[orgLogin];
-			var totalPages = Math.ceil(org.profile.public_repos / 30);
-
-			for(var i = 1; i <= totalPages; i++) {
-				pages.push(addCredentials(reposEndpoint.replace('{orgLogin}', org.profile.login).replace('{pageNumber}', i)));
-			}
-
-			var promises = pages.map(function (page) {
-				return $http({url: page, method: 'GET'});
-			});
-
-			return $q.all(promises);
-		}
-
-		/**
-		 * Fetches the organization repos, caches them
+		 * Fetches the organization repositories, caches them
 		 */
 		function fetchRepos(orgLogin) {
 
@@ -208,11 +210,33 @@
 
 					return org.repos;
 				})
-				.catch(function() {
-					return [];
+				.catch(function(err) {
+					return $q.reject(getFriendlyError(err.status));
 				});
 		}
 
+		/**
+		 * Fetches the organization repositories from Github, page by page
+		 */
+		function fetchReposPaginated(orgLogin) {
+
+			var pages = [];
+			var org = orgs[orgLogin];
+			var totalPages = Math.ceil(org.profile.public_repos / 30);
+
+			// Github's API returns only 30 repositories per page,
+			// let's assemble our calls to retrieve each one of the organization's repo pages
+
+			for(var i = 1; i <= totalPages; i++) {
+				pages.push(addCredentials(reposEndpoint.replace('{orgLogin}', org.profile.login).replace('{pageNumber}', i)));
+			}
+
+			var promises = pages.map(function (page) {
+				return $http({url: page, method: 'GET'});
+			});
+
+			return $q.all(promises);
+		}
 
 		/**
 		 * Returns the organization profile
@@ -222,11 +246,20 @@
 			var deferred = $q.defer();
 			var org = orgs[orgLogin];
 
+			if(!orgLogin) {
+				return $q.reject(getFriendlyError(0));
+			}
+
+			// If org exists in cache return it
 			if(org) {
+
+				// Controller is expecting a promise, return it as such
 				deferred.resolve(org.profile);
 				return deferred.promise;
 			}
 			else {
+
+				// Otherwise fetch from Github, return the promise
 				return fetchProfile(orgLogin);
 			}
 		}
@@ -236,28 +269,25 @@
 		 */
 		function fetchProfile(orgLogin) {
 
+			// Setup the endpoint, add OAuth credentials if available
 			var endpoint = addCredentials(orgEndpoint.replace('{orgLogin}', orgLogin));
 
 			return $http.get(endpoint)
 				.then(function(response) {
 
-					// If the id exists, then the org is good
-					if(response.data.id) {
-						orgs[orgLogin] = {
-							profile: response.data,
-							repos: [],
-							recent_commits: {}
-						};
+					// Let's cache it
+					orgs[orgLogin] = {
+						profile: response.data,
+						repos: [],
+						recent_commits: {}
+					};
 
-						return orgs[orgLogin].profile;
-					}
-					else {
-						return {};
-					}
-
+					return orgs[orgLogin].profile;
 				})
-				.catch(function() {
-					return {};
+				.catch(function(err) {
+
+					// API responded with an error, reject the promise with an error
+					return $q.reject(getFriendlyError(err.status));
 				});
 		}
 	}

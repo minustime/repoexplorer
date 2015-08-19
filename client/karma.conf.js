@@ -10,7 +10,7 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine'],
+    frameworks: ['mocha', 'chai', 'sinon', 'chai-sinon'],
 
 
     // list of files / patterns to load in the browser
@@ -19,7 +19,8 @@ module.exports = function(config) {
       'dist/lib/angular-route/angular-route.js',
       'dist/lib/angular-mocks/angular-mocks.js',
       'dist/app.js',
-      'test/**/*spec.js'
+      'test/**/*spec.js',
+      'test/fixtures/*.json'
     ],
 
 
@@ -27,10 +28,10 @@ module.exports = function(config) {
     exclude: [
     ],
 
-
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+      '**/*.json': ['html2js']
     },
 
 
@@ -59,11 +60,17 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
+    browsers: ['PhantomJS'],
+
+
+    phantomjsLauncher: {
+      // Have phantomjs exit if a ResourceError is encountered (useful if karma exits without killing phantom)
+      exitOnResourceError: true
+    },
 
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false
+    singleRun: true
   })
 }

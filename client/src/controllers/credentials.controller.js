@@ -19,24 +19,16 @@
         vm.clientSecret = '';
         vm.isOpen = false;
         vm.toggleDisplay = toggleDisplay;
-        vm.saveCredentials = saveCredentials;
+        vm.addCredentials = addCredentials;
+        vm.removeCredentials = removeCredentials;
 
-        function toggleDisplay() {
-            vm.isOpen = !vm.isOpen;
-        }
-
-        function saveCredentials() {
-
-            $window.localStorage[credentialsKey] = JSON.stringify({
-                clientId:  vm.clientId,
-                clientSecret: vm.clientSecret
-            });
-
-            vm.isOpen = false;
-            $window.alert('Got it!');
-        }
+        init();
 
         function init() {
+            populateCredentials();
+        }
+
+        function populateCredentials() {
             var credentials = $window.localStorage[credentialsKey];
 
             if(credentials) {
@@ -46,6 +38,35 @@
             }
         }
 
-        init();
+        /**
+         * Toggles display flag for view
+         */
+        function toggleDisplay() {
+            populateCredentials();
+            vm.isOpen = !vm.isOpen;
+        }
+
+        /**
+         * Store the OAuth credentials in local storage, close the panel
+         */
+        function addCredentials() {
+            vm.isOpen = false;
+            $window.localStorage[credentialsKey] = JSON.stringify({
+                clientId:  vm.clientId,
+                clientSecret: vm.clientSecret
+            });
+            $window.alert('Got them!');
+        }
+
+        /**
+         * Removes the OAuth credentials from local storage
+         */
+        function removeCredentials() {
+            vm.clientId = '';
+            vm.clientSecret = '';
+            $window.localStorage.removeItem(credentialsKey);
+            $window.alert('Gone!');
+        }
+
     }
 })();

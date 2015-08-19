@@ -5,7 +5,7 @@ This sample app allows one to browse an organization's public Github projects an
 The application consists of a client side app written in [AngularJS 1.4.3](https://angularjs.org/), the UI look and feel is provided by
 [Bootstrap](http://getbootstrap.com/css).
 
-The markup is written in [Jade](http://jade-lang.com), which gets compiled into HTML markup during the build process.
+The markup is written in [Jade](http://jade-lang.com), which gets compiled into HTML during the build process.
 [Sass](http://sass-lang.com/) is used for some minimal styling, compiled into CSS during the build process.
 
 [Bower](http://bower.io) is used to manage the app dependencies and [Gulp](http://gulpjs.com/) is used to compile the
@@ -75,3 +75,19 @@ Please follow the steps below to install the application locally.
     `$ python -m SimpleHTTPServer`
 
     navigate to `http://localhost:8000`
+
+## Testing
+
+### Requirements
+
+* [PhantomJS 1.9.x](http://phantomjs.org)
+
+### Installation steps
+
+1. Install PhantomJS globally
+
+    `$ npm install -g phanomjs`
+
+2. Execute the tests
+
+    `$ npm test`

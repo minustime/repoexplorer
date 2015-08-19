@@ -11,6 +11,7 @@ main
 
             .col-xs-8
                 article
+                    h1 Repositories
                     section
                         table.table.table-striped.table-hover
                             thead
@@ -29,7 +30,7 @@ main
                                         span.octicon.octicon-repo-forked
                                         span.sortable(ng-click="reverse=!reverse; vm.order('-forks', reverse)") Forks
                             tbody
-                                tr(ng-repeat="repo in vm.repos", ng-click="vm.viewRepo(repo)")
+                                tr(ng-repeat="repo in vm.repos", ng-click="vm.showRepo(repo)")
                                     td
                                         span.octicon.octicon-repo
                                         | {{ repo.name }}

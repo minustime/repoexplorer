@@ -8,7 +8,7 @@
 	Repos.$inject = ['$window', '$routeParams', '$filter', 'Org'];
 
 	/**
-	 * Repos controller, brokers organization repos data
+	 * Handles organization's repositories page, displays all public repositories
 	 */
 	function Repos($window, $routeParams, $filter, Org) {
 
@@ -18,7 +18,21 @@
 		vm.org = {};
 		vm.repos = [];
 		vm.order = order;
-		vm.viewRepo = viewRepo;
+		vm.showRepo = showRepo;
+
+		init();
+
+		/**
+		 * Grabs the initial data for the view
+		 */
+		function init() {
+
+			// TODO: show loading spinner
+
+			Org.getProfile($routeParams.orgLogin.toLowerCase())
+				.then(getRepos)
+				.catch(showErrors);
+		}
 
 		/**
 		 * Sorts by specified property
@@ -28,40 +42,32 @@
 		}
 
 		/**
-		 * Navigates to the repo screen
+		 * Navigates to a repository page
 		 */
-		function viewRepo(repo) {
+		function showRepo(repo) {
 			$window.location.href = '#/organizations/' + vm.org.login + '/repos/' + repo.name;
 		}
 
 		/**
-		 * Grabs the initial data for the view
+		 * Get the list of repositories
 		 */
-		function init() {
+		function getRepos(profile) {
 
-			// TODO: show loading spinner
+			vm.org = profile;
 
-			var orgLogin = $routeParams.orgLogin.toLowerCase();
-
-			Org.getProfile(orgLogin)
-				.then(function(profile) {
-					if(profile.id) {
-
-						vm.org = profile;
-
-						Org.getRepos(orgLogin)
-							.then(function(repos) {
-								vm.repos = repos;
-								vm.order('stargazers_count', true);
-							});
-					}
-					else {
-						// TODO: show friendly error message
-						$window.alert('Sorry, the organization you entered could not be retrieved.');
-					}
-				});
+			Org.getRepos(profile.login.toLowerCase())
+				.then(function(repos) {
+					vm.repos = repos;
+					vm.order('stargazers_count', true);
+				})
+				.catch(showErrors);
 		}
 
-		init();
+		/**
+		 * Display errors received from the service
+		 */
+		function showErrors (err) {
+			$window.alert(err.message);
+		}
 	}
 })();

@@ -8,41 +8,52 @@
 	Search.$inject = ['$scope', '$location', '$window', 'Org'];
 
 	/**
-	 * Search controller,  handles initial organization lookup
+	 * Handles organization lookup, redirects to organization's repositories screen
 	 */
 	function Search($scope, $location, $window, Org) {
 
 		var vm = this;
 
-		vm.search = Org.search
+		vm.search = Org.getSearchTerm;
 		vm.getProfile = getProfile;
 		vm.isHome = true;
 
-		// Signal when we're on the home page
+		locationCheck();
+
 		$scope.$on('$locationChangeSuccess', locationCheck);
 
+		/**
+		 * Checks if we're in the home page
+		 */
 		function locationCheck() {
 			vm.isHome = $location.path() === '/';
 		}
 
 		/**
-		 * Returns the organization's profile
+		 * Returns the organization's profile, redirects accordingly
 		 */
 		function getProfile() {
 
 			// TODO: show loading spinner
+
 			Org.getProfile(vm.search.term.toLowerCase())
-				.then(function(profile) {
-					if(profile.id) {
-						$window.location.href = '#/organizations/' + profile.login + '/repos';
-					}
-					else {
-						// TODO: add friendly error message
-						$window.alert('Sorry, the organization you entered could not be retrieved.');
-					}
-				});
+				.then(showRepos)
+				.catch(showErrors);
 		}
 
-		locationCheck();
+		/**
+		 * Navigate to the organization's repositories screen
+		 */
+		function showRepos (profile) {
+			$window.location.href = '#/organizations/' + profile.login + '/repos';
+		}
+
+		/**
+		 * Display errors received from the service
+		 */
+		function showErrors (err) {
+			$window.alert(err.message);
+		}
+
 	}
 })();
