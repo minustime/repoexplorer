@@ -50,13 +50,15 @@ Please follow the steps below to install the application locally.
 
     `$ git clone git@github.com:minustime/repoexplorer.git`
 
-    `$ cd repoexplorer/client`
-
 2. Install the build tools
 
     `$ npm install -g gulp`
 
+    `$ npm install -g bower`
+
 3. Install libraries the application depends on
+
+    `$ cd repoexplorer/client`
 
     `$ npm install`
 
@@ -70,7 +72,7 @@ Please follow the steps below to install the application locally.
 
     The compiled app is located in the `client/dist` folder, please run it on a web server. For example using python:
 
-    `$ cd client/dist`
+    `$ cd dist`
 
     `$ python -m SimpleHTTPServer`
 
@@ -86,7 +88,7 @@ Please follow the steps below to install the application locally.
 
 1. Install PhantomJS globally
 
-    `$ npm install -g phanomjs`
+    `$ npm install -g phantomjs`
 
 2. Execute the tests
 
