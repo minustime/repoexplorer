@@ -9,14 +9,14 @@ var ngAnnotate = require('gulp-ng-annotate');
 
 // Lint JavaScript
 gulp.task('lint-js', function() {
-	gulp.src(['src/**/app.js', 'src/**/*.js'])
+	return gulp.src(['src/**/app.js', 'src/**/*.js'])
 		.pipe(jshint('.jshintrc'))
 		.pipe(jshint.reporter('jshint-stylish'));
 });
 
 // Process JavaScript files
 gulp.task('process-js', function() {
-	gulp.src(['src/**/app.js', 'src/**/*.js'])
+	return gulp.src(['src/**/app.js', 'src/**/*.js'])
 		.pipe(concat('app.js'))
 		.pipe(ngAnnotate())
 		.pipe(uglify())
@@ -25,7 +25,7 @@ gulp.task('process-js', function() {
 
 // Process Jade files
 gulp.task('process-jade', function() {
-	gulp.src(['src/**/*.jade'])
+	return gulp.src(['src/**/*.jade'])
 		.pipe(jade({
 			pretty: true
 		}))
@@ -34,7 +34,7 @@ gulp.task('process-jade', function() {
 
 // Process SASS files
 gulp.task('process-sass', function() {
-	gulp.src(['src/**/*.scss'])
+	return gulp.src(['src/**/*.scss'])
 		.pipe(sass({
 			outputStyle: 'compressed'
 		}))
